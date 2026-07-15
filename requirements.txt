@@ -1,1 +1,1 @@
-openai
+duckduckgo_search
