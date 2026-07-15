@@ -4,7 +4,7 @@ from openai import OpenAI
 st.set_page_config(page_title="Shaxsiy Llama Chat", page_icon="🤖")
 st.title("🤖 Mening Shaxsiy 24/7 Llama Chatim")
 
-# Kalitni GitHub'dan emas, Streamlit Secrets ichidan xavfsiz o'qiymiz
+# Streamlit Secrets ichidan maxfiy kalitni xavfsiz o'qiymiz
 hf_token = st.secrets["HF_TOKEN"]
 
 client = OpenAI(
@@ -32,8 +32,9 @@ if prompt := st.chat_input("Savolingizni yozing..."):
         for m in st.session_state.messages:
             api_messages.append({"role": m["role"], "content": m["content"]})
             
+        # Hugging Face serverlarida eng barqaror va tezkor ishlaydigan kiberxavfsizlik modeli
         response = client.chat.completions.create(
-            model="meta-llama/Meta-Llama-3-8B-Instruct",
+            model="Qwen/Qwen2.5-Coder-7B-Instruct",
             messages=api_messages,
             stream=True,
         )
